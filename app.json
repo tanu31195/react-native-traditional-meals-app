@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "react-native-meals-app",
-    "slug": "react-native-meals-app",
-    "version": "1.0.0",
+    "name": "Traditional Food",
+    "slug": "react-native-traditional-meals-app",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#24180f",
@@ -18,9 +18,11 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber" : "0.1.0",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
