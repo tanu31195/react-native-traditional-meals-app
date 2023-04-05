@@ -80,6 +80,9 @@ export default function App() {
             <Stack.Screen
               name='MealsOverview'
               component={MealsOverviewScreen}
+              options={{
+                title: "Meals",
+              }}
             />
             <Stack.Screen
               name='MealDetail'
