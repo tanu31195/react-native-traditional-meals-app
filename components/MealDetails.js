@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { COLORS } from "../constants";
 
 export default function MealDetails({
   duration,
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
+    color: COLORS.tertiary
   },
   detailItem: {
     marginHorizontal: 4,

@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MealDetails from "../MealDetails";
+import { COLORS } from "../../constants";
 
 export default function MealItem({
   id,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 8,
     overflow: "hidden",
-    backgroundColor: "white",
+    backgroundColor: COLORS.secondary,
     elevation: 4,
     shadowColor: "black",
     shadowOpacity: 0.25,
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     margin: 8,
+    color: COLORS.tertiary,
   },
   buttonPressed: {
     opacity: 0.5,

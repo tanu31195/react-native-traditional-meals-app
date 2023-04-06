@@ -9,6 +9,7 @@ import { FavoritesContext } from "../store/context/favorites-context";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../store/redux/favorites";
 import useFetch from "../hook/useFetch";
+import { COLORS } from "../constants";
 
 export default function MealDetailScreen({ route, navigation }) {
   // const favoriteMealsContext = useContext(FavoritesContext);
@@ -38,7 +39,7 @@ export default function MealDetailScreen({ route, navigation }) {
         return (
           <IconButton
             icon={mealIsFavorite ? "star" : "star-outline"}
-            color='white'
+            color={COLORS.tertiary}
             onPress={changeFavoriteStatusHandler}
           />
         );
@@ -76,14 +77,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     margin: 8,
     textAlign: "center",
-    color: "white",
+    color: COLORS.tertiary,
   },
   image: {
     width: "100%",
     height: 350,
   },
   detailText: {
-    color: "white",
+    color: COLORS.tertiary,
   },
   listContainer: {
     maxWidth: "80%",

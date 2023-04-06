@@ -5,11 +5,11 @@
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "backgroundColor": "#24180f",
+    "backgroundColor": "#FAA276",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FAA276"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,18 +18,24 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber" : "0.1.0",
+      "buildNumber": "0.1.0",
       "supportsTablet": true
     },
     "android": {
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#FAA276"
+      },
+      "package": "com.tanu31195.reactnativetraditionalmealsapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c46db636-d375-464f-9b5d-2eb147fec9af"
+      }
     }
   }
 }

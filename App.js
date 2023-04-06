@@ -12,6 +12,9 @@ import MealDetailScreen from "./screens/MealDetailScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import FavoritesContextProvider from "./store/context/favorites-context";
 import { store } from "./store/redux/store";
+import { COLORS } from "./constants";
+import { SCREENS } from "./constants/messages";
+import AboutScreen from "./screens/AboutScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,32 +23,46 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#351401" },
-        headerTintColor: "white",
-        sceneContainerStyle: { backgroundColor: "#3f2f25" },
-        drawerContentStyle: { backgroundColor: "#351401" },
-        drawerInactiveTintColor: "white",
-        drawerActiveTintColor: "#351401",
-        drawerActiveBackgroundColor: "#e4baa1",
+        headerStyle: { backgroundColor: "#FAA249" },
+        headerTintColor: COLORS.tertiary,
+        sceneContainerStyle: { backgroundColor: COLORS.primary },
+        drawerContentStyle: { backgroundColor: COLORS.primary },
+        drawerInactiveTintColor: COLORS.tertiary,
+        drawerActiveTintColor: COLORS.tertiary,
+        drawerActiveBackgroundColor: "#FCBAB4",
       }}
     >
       <Drawer.Screen
-        name='Categories'
+        name={SCREENS.FOOD_DRINKS.name}
         component={CategoriesScreen}
         options={{
-          title: "All Categories",
+          title: SCREENS.FOOD_DRINKS.title,
           drawerIcon: ({ color, size }) => (
-            <Ionicons color={color} size={size} name='list' />
+            <Ionicons color={color} size={size} name='restaurant-outline' />
           ),
         }}
       />
       <Drawer.Screen
-        name='Favorites'
+        name={SCREENS.FAVORITES.name}
         component={FavoritesScreen}
         options={{
-          title: "Favorites",
+          title: SCREENS.FAVORITES.title,
           drawerIcon: ({ color, size }) => (
             <Ionicons color={color} size={size} name='star' />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={SCREENS.ABOUT.name}
+        component={AboutScreen}
+        options={{
+          title: SCREENS.ABOUT.title,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons
+              color={color}
+              size={size}
+              name='information-circle-outline'
+            />
           ),
         }}
       />
@@ -56,15 +73,15 @@ function DrawerNavigator() {
 export default function App() {
   return (
     <>
-      <StatusBar style='light' />
+      <StatusBar style='dark' />
       {/* <FavoritesContextProvider> */}
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              headerStyle: { backgroundColor: "#351401" },
-              headerTintColor: "white",
-              contentStyle: { backgroundColor: "#3f2f25" },
+              headerStyle: { backgroundColor: COLORS.secondary },
+              headerTintColor: COLORS.tertiary,
+              contentStyle: { backgroundColor: COLORS.primary },
             }}
           >
             <Stack.Screen
@@ -78,17 +95,17 @@ export default function App() {
               }}
             />
             <Stack.Screen
-              name='MealsOverview'
+              name={SCREENS.MEALS_OVERVIEW.name}
               component={MealsOverviewScreen}
               options={{
-                title: "Meals",
+                title: SCREENS.MEALS_OVERVIEW.title,
               }}
             />
             <Stack.Screen
-              name='MealDetail'
+              name={SCREENS.MEAL_DETAIL.name}
               component={MealDetailScreen}
               options={{
-                title: "Meal Detail",
+                title: SCREENS.MEAL_DETAIL.title,
               }}
             />
           </Stack.Navigator>
@@ -98,12 +115,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

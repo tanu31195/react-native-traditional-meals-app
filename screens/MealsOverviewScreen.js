@@ -2,6 +2,8 @@ import { useLayoutEffect } from "react";
 // import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealsList from "../components/MealsList/MealsList";
 import useFetch from "../hook/useFetch";
+import NoDataMessage from "../components/NoDataMessage";
+import { MESSAGES } from "../constants/messages";
 
 export default function MealsOverviewScreen({ route, navigation }) {
   const categoryId = route.params.categoryId;
@@ -20,6 +22,10 @@ export default function MealsOverviewScreen({ route, navigation }) {
 
     navigation.setOptions({ title: categoryTitle });
   }, [categoryId, navigation]);
+
+  if (categoryMeals.length === 0) {
+    return <NoDataMessage>{MESSAGES.NO_CATEGORY_MEALS}</NoDataMessage>;
+  }
 
   return <MealsList items={categoryMeals} />;
 }
