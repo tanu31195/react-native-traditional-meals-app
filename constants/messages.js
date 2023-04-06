@@ -1,4 +1,4 @@
-export const VERSION = '0.1.0'
+export const VERSION_TEXT = "Version 0.1.0";
 
 export const SCREENS = {
   FOOD_DRINKS: {
@@ -21,13 +21,20 @@ export const SCREENS = {
     name: "MealDetail",
     title: "Meal Detail",
   },
+  EMERGENCY: {
+    name: "Emergency",
+    title: "Emergency Contact",
+  },
 };
 
 export const MESSAGES = {
-  NO_CATEGORY_MEALS: 'No meals found for the selected category at the moment.',
-  NO_FAVORITES: 'You have no favorite meals yet.'
-}
+  NO_CATEGORY_MEALS: "No meals found for the selected category at the moment.",
+  NO_FAVORITES: "You have no favorite meals yet.",
+};
 
-export const ENDPOINTS ={
-
-}
+export const ENDPOINTS = {
+  CATEGORIES: "categories",
+  MEALS: "meals",
+  CONTACT: "contact",
+  EMERGENCY: "emergency",
+};

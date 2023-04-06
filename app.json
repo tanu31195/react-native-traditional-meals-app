@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Traditional Food",
+    "name": "Sri Lanka Traveler",
     "slug": "react-native-traditional-meals-app",
     "version": "0.1.0",
     "orientation": "portrait",
@@ -19,7 +19,13 @@
     ],
     "ios": {
       "buildNumber": "0.1.0",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "tel",
+          "mailto"
+        ]
+      }
     },
     "android": {
       "versionCode": 1,

@@ -10,6 +10,7 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
+import EmergencyContactScreen from "./screens/EmergencyContactScreen";
 import FavoritesContextProvider from "./store/context/favorites-context";
 import { store } from "./store/redux/store";
 import { COLORS } from "./constants";
@@ -32,6 +33,16 @@ function DrawerNavigator() {
         drawerActiveBackgroundColor: "#FCBAB4",
       }}
     >
+      <Drawer.Screen
+        name={SCREENS.EMERGENCY.name}
+        component={EmergencyContactScreen}
+        options={{
+          title: SCREENS.EMERGENCY.title,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons color={color} size={size} name='call-outline' />
+          ),
+        }}
+      />
       <Drawer.Screen
         name={SCREENS.FOOD_DRINKS.name}
         component={CategoriesScreen}
