@@ -38,6 +38,14 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "The app accesses your camera to let you add photos to your travel diary"
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "c46db636-d375-464f-9b5d-2eb147fec9af"

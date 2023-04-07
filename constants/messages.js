@@ -25,11 +25,20 @@ export const SCREENS = {
     name: "Emergency",
     title: "Emergency Contact",
   },
+  PLACES: {
+    name: "Places",
+    title: "Travel Diary",
+  },
+  ADD_PLACE: {
+    name: "AddPlace",
+    title: "Add a new Place",
+  },
 };
 
 export const MESSAGES = {
   NO_CATEGORY_MEALS: "No meals found for the selected category at the moment.",
   NO_FAVORITES: "You have no favorite meals yet.",
+  NO_PLACES: "No places added yet, start adding some!",
 };
 
 export const ENDPOINTS = {

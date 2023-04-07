@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -11,11 +10,14 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import EmergencyContactScreen from "./screens/EmergencyContactScreen";
+import AboutScreen from "./screens/AboutScreen";
 import FavoritesContextProvider from "./store/context/favorites-context";
 import { store } from "./store/redux/store";
 import { COLORS } from "./constants";
 import { SCREENS } from "./constants/messages";
-import AboutScreen from "./screens/AboutScreen";
+import Places from "./screens/Places";
+import PlaceAdd from "./screens/PlaceAdd";
+import IconButton from "./components/UI/IconButton";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -24,15 +26,33 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#FAA249" },
+        headerStyle: { backgroundColor: COLORS.secondary },
         headerTintColor: COLORS.tertiary,
         sceneContainerStyle: { backgroundColor: COLORS.primary },
         drawerContentStyle: { backgroundColor: COLORS.primary },
         drawerInactiveTintColor: COLORS.tertiary,
         drawerActiveTintColor: COLORS.tertiary,
-        drawerActiveBackgroundColor: "#FCBAB4",
+        drawerActiveBackgroundColor: COLORS.melon,
       }}
     >
+     <Drawer.Screen
+        name={SCREENS.PLACES.name}
+        component={Places}
+        options={({ navigation }) => ({
+          title: SCREENS.PLACES.title,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons color={color} size={size} name='earth' />
+          ),
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon='add'
+              size={24}
+              color={tintColor}
+              onPress={() => navigation.navigate(SCREENS.ADD_PLACE.name)}
+            />
+          ),
+        })}
+      />
       <Drawer.Screen
         name={SCREENS.EMERGENCY.name}
         component={EmergencyContactScreen}
@@ -117,6 +137,13 @@ export default function App() {
               component={MealDetailScreen}
               options={{
                 title: SCREENS.MEAL_DETAIL.title,
+              }}
+            />
+            <Stack.Screen
+              name={SCREENS.ADD_PLACE.name}
+              component={PlaceAdd}
+              options={{
+                title: SCREENS.ADD_PLACE.title,
               }}
             />
           </Stack.Navigator>

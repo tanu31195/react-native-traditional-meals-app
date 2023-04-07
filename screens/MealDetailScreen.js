@@ -1,6 +1,5 @@
 import { useContext, useLayoutEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import IconButton from "../components/IconButton";
 import List from "../components/MealDetail/List";
 import SubTitle from "../components/MealDetail/SubTitle";
 import MealDetails from "../components/MealDetails";
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../store/redux/favorites";
 import useFetch from "../hook/useFetch";
 import { COLORS } from "../constants";
+import IconButton from "../components/UI/IconButton";
 
 export default function MealDetailScreen({ route, navigation }) {
   // const favoriteMealsContext = useContext(FavoritesContext);
@@ -40,6 +40,7 @@ export default function MealDetailScreen({ route, navigation }) {
           <IconButton
             icon={mealIsFavorite ? "star" : "star-outline"}
             color={COLORS.tertiary}
+            size={24}
             onPress={changeFavoriteStatusHandler}
           />
         );

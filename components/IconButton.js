@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+// TODO: Remove
 export default function IconButton({ icon, color, onPress }) {
   return (
     <Pressable
