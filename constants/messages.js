@@ -33,6 +33,10 @@ export const SCREENS = {
     name: "AddPlace",
     title: "Add a new Place",
   },
+  MAP: {
+    name: "Map",
+    title: "Map",
+  },
 };
 
 export const MESSAGES = {
