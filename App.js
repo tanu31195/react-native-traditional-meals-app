@@ -18,6 +18,7 @@ import { SCREENS } from "./constants/messages";
 import Places from "./screens/Places";
 import PlaceAdd from "./screens/PlaceAdd";
 import IconButton from "./components/UI/IconButton";
+import Map from "./screens/Map";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,7 +36,7 @@ function DrawerNavigator() {
         drawerActiveBackgroundColor: COLORS.melon,
       }}
     >
-     <Drawer.Screen
+      <Drawer.Screen
         name={SCREENS.PLACES.name}
         component={Places}
         options={({ navigation }) => ({
@@ -144,6 +145,13 @@ export default function App() {
               component={PlaceAdd}
               options={{
                 title: SCREENS.ADD_PLACE.title,
+              }}
+            />
+            <Stack.Screen
+              name={SCREENS.MAP.name}
+              component={Map}
+              options={{
+                title: SCREENS.MAP.title,
               }}
             />
           </Stack.Navigator>

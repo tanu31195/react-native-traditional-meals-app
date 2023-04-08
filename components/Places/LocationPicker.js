@@ -1,5 +1,5 @@
 import { Alert, Image, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getCurrentPositionAsync,
   useForegroundPermissions,
@@ -9,11 +9,32 @@ import {
 import OutlinedButton from "../UI/OutlinedButton";
 import { COLORS } from "../../constants";
 import { getMapPreview } from "../../util/location";
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
+import { SCREENS } from "../../constants/messages";
 
 export default function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState();
+  const isFocused = useIsFocused();
+  const navigation = useNavigation();
+  const route = useRoute();
+
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  useEffect(() => {
+    if (isFocused && route.params) {
+      const mapPickedLocation = {
+        lat: route.params.pickedLocation.lat,
+        lng: route.params.pickedLocation.lng,
+      };
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [route, isFocused]);
+
   async function verifyPermissions() {
     if (
       locationPermissionInformation.status === PermissionStatus.UNDETERMINED
@@ -47,7 +68,9 @@ export default function LocationPicker() {
     });
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate(SCREENS.MAP.name);
+  }
 
   let locationPreview = <Text>No location picked yet.</Text>;
 
@@ -87,7 +110,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderColor: COLORS.tertiary,
     borderWidth: 2,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   actions: {
     flexDirection: "row",
