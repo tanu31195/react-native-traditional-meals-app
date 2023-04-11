@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 import { COLORS } from "../constants";
 import ContactCard from "../components/ContactCard";
@@ -16,6 +17,7 @@ export default function AboutScreen() {
       {contactData?.map((item) => (
         <ContactCard key={item.id} contactItem={item} />
       ))}
+      <Text style={styles.text}>Made with <Ionicons size={25} name="logo-react" color={COLORS.tertiary} /></Text>
     </View>
   );
 }
