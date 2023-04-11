@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import {
   launchCameraAsync,
   useCameraPermissions,
+  useMediaLibraryPermissions,
   PermissionStatus,
 } from "expo-image-picker";
 import OutlinedButton from "../UI/OutlinedButton";
 import { COLORS } from "../../constants";
 
-export default function ImagePicker() {
+export default function ImagePicker({ onTakeImage }) {
   const [image, setImage] = useState();
   const [cameraPermissionsInformation, requestPermission] =
     useCameraPermissions();
@@ -40,6 +41,7 @@ export default function ImagePicker() {
       quality: 0.5,
     });
     setImage(image.assets[0].uri);
+    onTakeImage(image.assets[0].uri);
   }
 
   return (
@@ -65,11 +67,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    backgroundColor: COLORS.melon,
+    backgroundColor: COLORS.cinderella,
     marginVertical: 10,
     borderColor: COLORS.tertiary,
     borderWidth: 2,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   image: {
     width: "100%",

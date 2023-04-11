@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { Provider } from "react-redux";
+import * as SplashScreen from "expo-splash-screen";
 
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
@@ -19,6 +20,9 @@ import Places from "./screens/Places";
 import PlaceAdd from "./screens/PlaceAdd";
 import IconButton from "./components/UI/IconButton";
 import Map from "./screens/Map";
+import { useCallback, useEffect, useState } from "react";
+import { init } from "./util/database";
+import PlaceDetails from "./screens/PlaceDetails";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -103,12 +107,37 @@ function DrawerNavigator() {
 }
 
 export default function App() {
+  const [dbInitialized, setDbInitialized] = useState(false);
+
+  useEffect(() => {
+    const prepare = async () => {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+        init();
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setDbInitialized(true);
+      }
+    };
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (dbInitialized) {
+      await SplashScreen.hideAsync();
+    }
+  }, [dbInitialized]);
+
+  if (!dbInitialized) return null;
+
   return (
     <>
       <StatusBar style='dark' />
       {/* <FavoritesContextProvider> */}
       <Provider store={store}>
-        <NavigationContainer>
+        <NavigationContainer onReady={onLayoutRootView}>
           <Stack.Navigator
             screenOptions={{
               headerStyle: { backgroundColor: COLORS.secondary },
@@ -152,6 +181,13 @@ export default function App() {
               component={Map}
               options={{
                 title: SCREENS.MAP.title,
+              }}
+            />
+            <Stack.Screen
+              name={SCREENS.PLACE_DETAIL.name}
+              component={PlaceDetails}
+              options={{
+                title: SCREENS.PLACE_DETAIL.title,
               }}
             />
           </Stack.Navigator>

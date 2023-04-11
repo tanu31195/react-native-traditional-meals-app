@@ -42,7 +42,8 @@
       [
         "expo-image-picker",
         {
-          "cameraPermission": "The app accesses your camera to let you add photos to your travel diary"
+          "cameraPermission": "This app accesses your camera to let you add photos to your travel diary",
+          "photosPermission": "This app accesses your photos to let you add photos to your travel diary"
         }
       ]
     ],

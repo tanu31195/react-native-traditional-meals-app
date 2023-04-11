@@ -8,7 +8,7 @@ import {
 
 import OutlinedButton from "../UI/OutlinedButton";
 import { COLORS } from "../../constants";
-import { getMapPreview } from "../../util/location";
+import { getAddress, getMapPreview } from "../../util/location";
 import {
   useIsFocused,
   useNavigation,
@@ -16,7 +16,7 @@ import {
 } from "@react-navigation/native";
 import { SCREENS } from "../../constants/messages";
 
-export default function LocationPicker() {
+export default function LocationPicker({ onPickLocation }) {
   const [pickedLocation, setPickedLocation] = useState();
   const isFocused = useIsFocused();
   const navigation = useNavigation();
@@ -34,6 +34,19 @@ export default function LocationPicker() {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    async function handleLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        );
+        onPickLocation({ ...pickedLocation, address: address });
+      }
+    }
+    handleLocation();
+  }, [pickedLocation, onPickLocation]);
 
   async function verifyPermissions() {
     if (
@@ -89,7 +102,7 @@ export default function LocationPicker() {
       <View style={styles.mapPreview}>{locationPreview}</View>
       <View style={styles.actions}>
         <OutlinedButton icon='location' onPress={getLocationHandler}>
-          Locate User
+          Current Location
         </OutlinedButton>
         <OutlinedButton icon='map' onPress={pickOnMapHandler}>
           Pick on Map
@@ -106,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    backgroundColor: COLORS.melon,
+    backgroundColor: COLORS.cinderella,
     marginVertical: 10,
     borderColor: COLORS.tertiary,
     borderWidth: 2,
