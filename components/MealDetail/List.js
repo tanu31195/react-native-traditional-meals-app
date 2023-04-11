@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     marginVertical: 4,
-    marginHorizontal: 12,
-    backgroundColor: "#e2b497",
+    backgroundColor: COLORS.cinderella,
   },
   itemText: {
     color: COLORS.tertiary,

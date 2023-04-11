@@ -3,12 +3,8 @@ const COLORS = {
   secondary: "#FAA249",
   tertiary: "#351401",
 
-  gray: "#83829A",
-  gray2: "#C1C0C8",
-
-  white: "#F3F4F8",
-  lightWhite: "#FAFAFC",
   melon: "#FCBAB4",
+  cinderella: "#FCE1DB",
 };
 
 const FONT = {

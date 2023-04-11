@@ -8,7 +8,9 @@ const useFetch = (endpoint, query) => {
 
   const options = {
     method: "GET",
-    url: `https://tanu31195.github.io/data/react-native/traditional-meals-app/${endpoint}.json`,
+    url: query.other
+      ? endpoint
+      : `https://tanu31195.github.io/data/react-native/traditional-meals-app/${endpoint}.json`,
   };
 
   const fetchData = async () => {
