@@ -53,9 +53,15 @@ export default function ImagePicker({ onTakeImage }) {
           <Text>Photo not captured yet.</Text>
         )}
       </View>
-      <OutlinedButton icon='camera' onPress={takeImageHandler}>
+      <View style={styles.actions}>
+        <OutlinedButton icon='camera' onPress={takeImageHandler}>
         {image ? "Re-take Photo" : "Take Photo"}{" "}
-      </OutlinedButton>
+        </OutlinedButton>
+        {/* TODO: Add image picker */}
+        <OutlinedButton icon='images' onPress={takeImageHandler}>
+          Pick from Gallery
+        </OutlinedButton>
+      </View>
     </View>
   );
 }
@@ -76,5 +82,10 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  actions: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });

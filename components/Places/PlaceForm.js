@@ -1,21 +1,28 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import React, { useCallback, useState } from "react";
 import { COLORS } from "../../constants";
 import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
 import Button from "../UI/Button";
 import { Place } from "../../models/place";
+import Input from "../UI/Input";
 
 export default function PlaceForm({ onSavePlace }) {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredDescription, setEnteredDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [selectedLocation, setSelectedLocation] = useState();
-  function changeTitleHandler(enteredText) {
-    setEnteredTitle(enteredText);
-  }
-  function changeDescriptionHandler(enteredText) {
-    setEnteredDescription(enteredText);
+
+  const [inputValues, setInputValues] = useState({
+    enteredTitle: "",
+    enteredDescription: "",
+  });
+
+  function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputValues((prevState) => {
+      return {
+        ...prevState,
+        [inputIdentifier]: enteredValue,
+      };
+    });
   }
 
   function takeImageHandler(imageUri) {
@@ -28,8 +35,8 @@ export default function PlaceForm({ onSavePlace }) {
 
   function savePlaceHandler() {
     const placeData = new Place(
-      enteredTitle,
-      enteredDescription,
+      inputValues.enteredTitle,
+      inputValues.enteredDescription,
       selectedImage,
       selectedLocation
     );
@@ -37,25 +44,24 @@ export default function PlaceForm({ onSavePlace }) {
   }
   return (
     <ScrollView style={styles.form}>
-      <View>
-        <Text style={styles.label}>Title</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={changeTitleHandler}
-          value={enteredTitle}
-          selectionColor={COLORS.primary}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Description</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={changeDescriptionHandler}
-          value={enteredDescription}
-          multiline
-          selectionColor={COLORS.primary}
-        />
-      </View>
+      <Input
+        label='Title'
+        textInputConfig={{
+          onChangeText: inputChangedHandler.bind(this, "enteredTitle"),
+          value: inputValues.enteredTitle,
+          selectionColor: COLORS.primary,
+          autoCorrect: false,
+        }}
+      />
+      <Input
+        label='Description'
+        textInputConfig={{
+          multiLine: true,
+          onChangeText: inputChangedHandler.bind(this, "enteredDescription"),
+          value: inputValues.enteredDescription,
+          selectionColor: COLORS.primary,
+        }}
+      />
       <ImagePicker onTakeImage={takeImageHandler} />
       <LocationPicker onPickLocation={pickLocationHandler} />
       <Text>{selectedLocation?.address}</Text>
@@ -68,19 +74,5 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     padding: 24,
-  },
-  label: {
-    fontWeight: "bold",
-    marginBottom: 4,
-    color: COLORS.tertiary,
-  },
-  input: {
-    marginVertical: 8,
-    paddingHorizontal: 4,
-    paddingVertical: 8,
-    fontSize: 16,
-    borderBottomColor: COLORS.tertiary,
-    borderBottomWidth: 2,
-    backgroundColor: COLORS.cinderella,
   },
 });

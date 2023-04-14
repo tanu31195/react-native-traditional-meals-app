@@ -31,7 +31,7 @@ export const SCREENS = {
   },
   ADD_PLACE: {
     name: "AddPlace",
-    title: "Add a new Place",
+    title: "Add a New Place",
   },
   PLACE_DETAIL: {
     name: "PlaceDetail",

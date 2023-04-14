@@ -20,7 +20,7 @@ export default function PlacesList({ places }) {
     <View>
       <FlatList
         style={styles.list}
-        data={places}
+        data={places.reverse()}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <PlaceItem place={item} onSelect={selectPlaceHandler} />
