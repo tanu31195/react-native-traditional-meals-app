@@ -23,6 +23,7 @@ import Map from "./screens/Map";
 import { useCallback, useEffect, useState } from "react";
 import { init } from "./util/database";
 import PlaceDetails from "./screens/PlaceDetails";
+import FareCalculatorScreen from "./screens/FareCalculatorScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -85,6 +86,16 @@ function DrawerNavigator() {
           title: SCREENS.FAVORITES.title,
           drawerIcon: ({ color, size }) => (
             <Ionicons color={color} size={size} name='star' />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={SCREENS.FARES.name}
+        component={FareCalculatorScreen}
+        options={{
+          title: SCREENS.FARES.title,
+          drawerIcon: ({ color, size }) => (
+            <Ionicons color={color} size={size} name='car-outline' />
           ),
         }}
       />

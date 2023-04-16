@@ -9,6 +9,10 @@ export const SCREENS = {
     name: "Favorites",
     title: "Favorites",
   },
+  FARES: {
+    name: "Fares",
+    title: "Fare Calculator",
+  },
   ABOUT: {
     name: "About",
     title: "About",
