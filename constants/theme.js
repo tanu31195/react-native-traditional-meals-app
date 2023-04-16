@@ -5,6 +5,8 @@ const COLORS = {
 
   melon: "#FCBAB4",
   cinderella: "#FCE1DB",
+
+  error: "#D21404"
 };
 
 const FONT = {
