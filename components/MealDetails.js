@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
 
 export default function MealDetails({
@@ -8,12 +9,16 @@ export default function MealDetails({
   style,
   textStyle,
 }) {
+  const iconSize = 24;
   return (
     <View style={[styles.details, style]}>
-      <Text style={[styles.detailItem, textStyle]}>{duration} mins</Text>
+      <Ionicons name='hourglass-outline' size={iconSize} color={COLORS.tertiary} />
+      <Text style={[styles.detailItem, textStyle]}>{duration} mins |</Text>
+      <Ionicons name='speedometer-outline' size={iconSize} color={COLORS.tertiary} />
       <Text style={[styles.detailItem, textStyle]}>
-        {complexity?.toUpperCase()}
+        {complexity?.toUpperCase()} |
       </Text>
+      <Ionicons name='cash-outline' size={iconSize} color={COLORS.tertiary} />
       <Text style={[styles.detailItem, textStyle]}>
         {affordability?.toUpperCase()}
       </Text>
@@ -27,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    color: COLORS.tertiary
+    color: COLORS.tertiary,
   },
   detailItem: {
     marginHorizontal: 4,
